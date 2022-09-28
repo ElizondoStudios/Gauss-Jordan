@@ -1,0 +1,68 @@
+html{
+  font-size: 10px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.App--titulo{
+  text-align: center;
+}
+.App--espacio{
+  height: 100px;
+}
+/* 
+###########################################
+        Entrada sistemas
+###########################################
+*/
+
+.entrada-sistemas{
+  display: flex;
+  justify-content: center;
+}
+  .entrada-sistemas--form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 50%;
+  }
+
+
+/* 
+###########################################
+        Matriz aumentada
+###########################################
+*/
+
+.matriz-aumentada{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+  .matriz-aumentada--simbolos>p{
+    font-size: 10rem;
+    font-weight: 100;
+    margin: 0;
+  }
+
+  .matriz-aumentada--datos{
+    font-size: 2rem;
+    text-align: center;
+  }
+  .matriz-aumentada--datos>tr>td{
+    min-width:50px;
+  }
+
+/* 
+###########################################
+        Resolver
+###########################################
+*/
+
+  .resolver--paso{
+    text-align: center;
+  }
+
+  .resolver--solucion{
+    text-align: center;
+  }
