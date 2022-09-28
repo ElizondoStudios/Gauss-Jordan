@@ -73,46 +73,79 @@ function Resolver(props){
 
         generarPaso()
 
-        //R1-(a13/a33)R3➡R1
-        Pasos.push(<h2 className="resolver--paso">R1-({a13.dividir(a33)})R3 ➡ R1</h2>)  
-        alfa= new racionales(a13.dividir(a33))
-        a13.dato="0"
-        operacionRenglon(b1, b3, alfa)
+        if(a22.dato==="0"){
+            if(b2.dato==="0"){
+                Pasos.push(
+                    <div className="resolver--solucion">
+                        <h1>Solución del sistema:</h1>
+                        <h2>El sistema tiene infinitas soluciones</h2>
+                    </div>
+                )
+            }else{
+                Pasos.push(
+                    <div className="resolver--solucion">
+                        <h1>Solución del sistema:</h1>
+                        <h2>El sistema no tiene solución</h2>
+                    </div>
+                )
+            }
+        }else if(a33.dato==="0"){
+            if(b3.dato==="0"){
+                Pasos.push(
+                    <div className="resolver--solucion">
+                        <h1>Solución del sistema:</h1>
+                        <h2>El sistema tiene infinitas soluciones</h2>
+                    </div>
+                )
+            }else{
+                Pasos.push(
+                    <div className="resolver--solucion">
+                        <h1>Solución del sistema:</h1>
+                        <h2>El sistema no tiene solución</h2>
+                    </div>
+                )
+            }
+        }else{
+            //R1-(a13/a33)R3➡R1
+            Pasos.push(<h2 className="resolver--paso">R1-({a13.dividir(a33)})R3 ➡ R1</h2>)  
+            alfa= new racionales(a13.dividir(a33))
+            a13.dato="0"
+            operacionRenglon(b1, b3, alfa)
 
-        //R2-(a23/a33)R3➡R2
-        Pasos.push(<h2 className="resolver--paso">R2-({a23.dividir(a33)})R3 ➡ R2</h2>)  
-        alfa= new racionales(a23.dividir(a33))
-        a23.dato="0"
-        operacionRenglon(b2, b3, alfa)
+            //R2-(a23/a33)R3➡R2
+            Pasos.push(<h2 className="resolver--paso">R2-({a23.dividir(a33)})R3 ➡ R2</h2>)  
+            alfa= new racionales(a23.dividir(a33))
+            a23.dato="0"
+            operacionRenglon(b2, b3, alfa)
 
-        generarPaso()
+            generarPaso()
 
-        //(1/a11)R1➡R1
-        Pasos.push(<h2 className="resolver--paso">({new racionales("1").dividir(a11)})R1 ➡ R1</h2>)  
-        b1.dato=b1.dividir(a11);
-        a11.dato="1"
+            //(1/a11)R1➡R1
+            Pasos.push(<h2 className="resolver--paso">({new racionales("1").dividir(a11)})R1 ➡ R1</h2>)  
+            b1.dato=b1.dividir(a11);
+            a11.dato="1"
 
-        //(1/a22)R2➡R2
-        Pasos.push(<h2 className="resolver--paso">({new racionales("1").dividir(a22)})R2 ➡ R2</h2>)  
-        b2.dato=b2.dividir(a22);
-        a22.dato="1"
-        
-        //(1/a33)R3➡R3
-        Pasos.push(<h2 className="resolver--paso">({new racionales("1").dividir(a33)})R3 ➡ R3</h2>)  
-        b3.dato=b3.dividir(a33);
-        a33.dato="1"
+            //(1/a22)R2➡R2
+            Pasos.push(<h2 className="resolver--paso">({new racionales("1").dividir(a22)})R2 ➡ R2</h2>)  
+            b2.dato=b2.dividir(a22);
+            a22.dato="1"
+            
+            //(1/a33)R3➡R3
+            Pasos.push(<h2 className="resolver--paso">({new racionales("1").dividir(a33)})R3 ➡ R3</h2>)  
+            b3.dato=b3.dividir(a33);
+            a33.dato="1"
 
-        generarPaso()
+            generarPaso()
 
-        Pasos.push(
-            <div className="resolver--solucion">
-                <h1>Solución del sistema:</h1>
-                <h2>x= {b1.dato}</h2>
-                <h2>y= {b2.dato}</h2>
-                <h2>z= {b3.dato}</h2>
-            </div>
-        )
-
+            Pasos.push(
+                <div className="resolver--solucion">
+                    <h1>Solución del sistema:</h1>
+                    <h2>x= {b1.dato}</h2>
+                    <h2>y= {b2.dato}</h2>
+                    <h2>z= {b3.dato}</h2>
+                </div>
+            )
+        }
     } else{ //Resolver 2x2
         function generarPaso(){
             matrizPasos=[a11.dato, a12.dato, b1.dato, a21.dato, a22.dato, b2.dato]
