@@ -139,38 +139,57 @@ function Resolver(props){
 
         generarPaso()
 
-        
+        //Comprobar si tiene solución única
+        if(a22.dato==="0"){
+            if(b2.dato==="0"){
+                let x=a11.multiplicar(new racionales("-1"))
+                x= new racionales(x).dividir(a12)
 
+                Pasos.push(
+                    <div className="resolver--solucion">
+                        <h1>Solución del sistema:</h1>
+                        <h2>El sistema tiene infinitas soluciones</h2>
+                        <h2>S={`{(x, ${b1.dividir(a12)} ${x[0]==="-"? x : "+"+x}x)| x∈R}`}</h2>
+                    </div>
+                )
+            }else{
+                Pasos.push(
+                    <div className="resolver--solucion">
+                        <h1>Solución del sistema:</h1>
+                        <h2>El sistema no tiene solución</h2>
+                    </div>
+                )
+            }
+        }else{
+            //(1/a11)R1 ➡ R1
+            Pasos.push(<h2 className="resolver--paso">({new racionales("1").dividir(a11)})R1 ➡ R1</h2>)  
+            a12.dato= a12.dividir(a11)
+            b1.dato= b1.dividir(a11)
+            a11.dato="1"
 
-        //(1/a11)R1 ➡ R1
-        Pasos.push(<h2 className="resolver--paso">({new racionales("1").dividir(a11)})R1 ➡ R1</h2>)  
-        a12.dato= a12.dividir(a11)
-        b1.dato= b1.dividir(a11)
-        a11.dato="1"
+            //(1/a22)R2 ➡ R2
+            Pasos.push(<h2 className="resolver--paso">({new racionales("1").dividir(a22)})R2 ➡ R2</h2>)  
+            b2.dato= b2.dividir(a22)
+            a22.dato="1"
+            
+            generarPaso()   
+            
+            //R1- (a12/a22)R2 ➡ R1
+            Pasos.push(<h2 className="resolver--paso">R1-({a12.dividir(a22)})R2 ➡ R1</h2>) 
+            alfa= new racionales(a12.dividir(a22))
+            a12.dato="0"    
+            operacionRenglon(b1, b2, alfa)
 
-        //(1/a22)R2 ➡ R2
-        Pasos.push(<h2 className="resolver--paso">({new racionales("1").dividir(a22)})R2 ➡ R2</h2>)  
-        b2.dato= b2.dividir(a22)
-        a22.dato="1"
-        
-        generarPaso()   
-       
-        //R1- (a12/a22)R2 ➡ R1
-        Pasos.push(<h2 className="resolver--paso">R1-({a12.dividir(a22)})R2 ➡ R1</h2>) 
-        alfa= new racionales(a12.dividir(a22))
-        a12.dato="0"    
-        operacionRenglon(b1, b2, alfa)
-
-        generarPaso() 
-        
-        Pasos.push(
-            <div className="resolver--solucion">
-                <h1>Solución del sistema:</h1>
-                <h2>x= {b1.dato}</h2>
-                <h2>y= {b2.dato}</h2>
-            </div>
-        )
-
+            generarPaso() 
+            
+            Pasos.push(
+                <div className="resolver--solucion">
+                    <h1>Solución del sistema:</h1>
+                    <h2>x= {b1.dato}</h2>
+                    <h2>y= {b2.dato}</h2>
+                </div>
+            )
+        }
     }
 
     //Retorno

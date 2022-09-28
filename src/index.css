@@ -49,7 +49,7 @@ html{
     font-size: 2rem;
     text-align: center;
   }
-  .matriz-aumentada--datos>tr>td{
+  .matriz-aumentada--datos>tbody>tr>td{
     min-width:50px;
   }
 

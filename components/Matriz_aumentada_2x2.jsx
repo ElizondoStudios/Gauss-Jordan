@@ -6,14 +6,16 @@ function Matriz_aumentada_2x2(props){
             </div>
             <div>
                 <table className="matriz-aumentada--datos">
-                    <tr>
-                        <td>{props.matriz[0]}</td>
-                        <td>{props.matriz[1]}</td>
-                    </tr>
-                    <tr>
-                        <td>{props.matriz[3]}</td>
-                        <td>{props.matriz[4]}</td>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>{props.matriz[0]}</td>
+                            <td>{props.matriz[1]}</td>
+                        </tr>
+                        <tr>
+                            <td>{props.matriz[3]}</td>
+                            <td>{props.matriz[4]}</td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
             <div className="matriz-aumentada--simbolos">
@@ -21,12 +23,14 @@ function Matriz_aumentada_2x2(props){
             </div>
             <div>
                 <table className="matriz-aumentada--datos">
-                    <tr>
-                        <td>{props.matriz[2]}</td>
-                    </tr>
-                    <tr>
-                        <td>{props.matriz[5]}</td>
-                    </tr>
+                    <tbody>
+                        <tr>
+                            <td>{props.matriz[2]}</td>
+                        </tr>
+                        <tr>
+                            <td>{props.matriz[5]}</td>
+                        </tr>
+                    </tbody>
                 </table>
             </div>
             <div className="matriz-aumentada--simbolos">
