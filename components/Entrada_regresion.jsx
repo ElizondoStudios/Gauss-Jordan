@@ -4,23 +4,6 @@ import Resolver from "./Resolver";
 
 let puntos
 
-//Gráfica
-function createPlot(m,b){
-    functionPlot({
-      target: '#grafica',
-      title: `Gráfica y=${m}x ${b>=0?"+"+b: b}`,
-      grid: true,
-      data: [{
-        fn: `${m}x+${b}`
-      },
-      {
-        points: puntos,
-        fnType: 'points',
-        graphType: 'scatter'
-      }
-      ]
-    })
-  }
 
 function Entrada_regresion(){
     const [entradaxk, setEntradaxk]= React.useState("")
@@ -29,8 +12,32 @@ function Entrada_regresion(){
     const [matriz, setMatriz]= React.useState([])
     const [sigmaSt, setSigmast]= React.useState([])
     const [tablaSt, setTablaSt]= React.useState([[]])
+    const [graphWidth, setGraphWidth]= React.useState(0)
+
+    React.useEffect(()=>{
+        window.addEventListener("resize", ()=>{setGraphWidth((window.innerWidth)*0.80)})
+    })
 
     let vecxk, vecyk, vecx2k, vecxkyk, sigma, tablaReng, tabla
+
+    //Gráfica
+    function createPlot(m,b){
+        functionPlot({
+          target: '#grafica',
+          title: `Gráfica y=${m}x ${b>=0?"+"+b: b}`,
+          width: graphWidth,
+          grid: true,
+          data: [{
+            fn: `${m}x+${b}`
+          },
+          {
+            points: puntos,
+            fnType: 'points',
+            graphType: 'scatter'
+          }
+          ]
+        })
+    }
 
     //Interpretar entrada y crear vecxk y vecyk
     function interpretar(){
@@ -135,7 +142,7 @@ function Entrada_regresion(){
              regresion={true}
              createPlot={createPlot}
             />}
-            <div id="grafica"></div>
+            <div className="grafica" id="grafica"></div>
         </div>
     )
 }
