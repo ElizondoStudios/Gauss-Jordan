@@ -2,6 +2,26 @@ import React from "react";
 import Tabla_regresion from "./Tabla_regresion";
 import Resolver from "./Resolver";
 
+let puntos
+
+//Gráfica
+function createPlot(m,b){
+    functionPlot({
+      target: '#grafica',
+      title: `Gráfica y=${m}x ${b>=0?"+"+b: b}`,
+      grid: true,
+      data: [{
+        fn: `${m}x+${b}`
+      },
+      {
+        points: puntos,
+        fnType: 'points',
+        graphType: 'scatter'
+      }
+      ]
+    })
+  }
+
 function Entrada_regresion(){
     const [entradaxk, setEntradaxk]= React.useState("")
     const [entradayk, setEntradayk]= React.useState("")
@@ -14,7 +34,7 @@ function Entrada_regresion(){
 
     //Interpretar entrada y crear vecxk y vecyk
     function interpretar(){
-        vecxk=[], vecyk=[], vecx2k=[], vecxkyk=[], sigma=[0,0,0,0], tablaReng=[], tabla=[]
+        vecxk=[], vecyk=[], vecx2k=[], vecxkyk=[], sigma=[0,0,0,0], tablaReng=[], tabla=[], puntos=[]
         setMatriz([])
         
         //Crear vecxk
@@ -70,8 +90,16 @@ function Entrada_regresion(){
         setMatriz([""+sigma[2], ""+sigma[0], ""+sigma[3], 
         ""+sigma[0], ""+vecxk.length, ""+sigma[1]])
 
-        setSolucion(true)
+        //Crear matriz de puntos
+        let coordenadas
+        for(let i=0; i<vecxk.length; i++){
+            coordenadas=[]
+            coordenadas.push(vecxk[i])
+            coordenadas.push(vecyk[i])
+            puntos.push(coordenadas)
+        }
 
+        setSolucion(true)
     }
 
     return(
@@ -105,7 +133,9 @@ function Entrada_regresion(){
              matriz={matriz}
              dimension="2x2"
              regresion={true}
+             createPlot={createPlot}
             />}
+            <div id="grafica"></div>
         </div>
     )
 }

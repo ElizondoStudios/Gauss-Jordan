@@ -230,13 +230,15 @@ function Resolver(props){
                     <h2>{props.regresion? "A": "x"}= {b1.dato}</h2>
                     <h2>{props.regresion? "B": "y"}= {b2.dato}</h2>
                     {props.regresion && 
-                    <h2>y= {b1.dato}x {b2.primerDato()>0 && "+"}{b2.dato}</h2>}
+                    <h2>y= {b1.dato}x {b2.primerDato()>=0 && "+"}{b2.dato}</h2>}
                     {props.regresion && 
                     <h2>y= 
                         {b1.segundoDato()?(b1.primerDato()/b1.segundoDato()).toFixed(3): b1.dato}
-                        x {b2.primerDato()>0 && "+"}
+                        x {b2.primerDato()>=0 && "+"}
                         {b2.segundoDato()?(b2.primerDato()/b2.segundoDato()).toFixed(3): b2.dato}
                     </h2>}
+                    {props.regresion && props.createPlot(b1.segundoDato()?(b1.primerDato()/b1.segundoDato()).toFixed(3): b1.dato,
+                     b2.segundoDato()?(b2.primerDato()/b2.segundoDato()).toFixed(3): b2.dato)}
                 </div>
             )
         }
