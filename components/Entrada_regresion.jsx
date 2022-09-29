@@ -2,17 +2,19 @@ import React from "react";
 import Tabla_regresion from "./Tabla_regresion";
 import Resolver from "./Resolver";
 
-function Entrada_regresion(props){
-    const [entradaxk, setEntradaxk]= React.useState("");
-    const [entradayk, setEntradayk]= React.useState("");
-    const [solucion, setSolucion]= React.useState(false);
+function Entrada_regresion(){
+    const [entradaxk, setEntradaxk]= React.useState("")
+    const [entradayk, setEntradayk]= React.useState("")
+    const [solucion, setSolucion]= React.useState(false)
     const [matriz, setMatriz]= React.useState([])
+    const [sigmaSt, setSigmast]= React.useState([])
+    const [tablaSt, setTablaSt]= React.useState([[]])
 
-    let vecxk, vecyk, vecx2k, vecxkyk, sigma
+    let vecxk, vecyk, vecx2k, vecxkyk, sigma, tablaReng, tabla
 
     //Interpretar entrada y crear vecxk y vecyk
     function interpretar(){
-        vecxk=[], vecyk=[], vecx2k=[], vecxkyk=[], sigma=[0,0,0,0],
+        vecxk=[], vecyk=[], vecx2k=[], vecxkyk=[], sigma=[0,0,0,0], tablaReng=[], tabla=[]
         setMatriz([])
         
         //Crear vecxk
@@ -40,6 +42,7 @@ function Entrada_regresion(props){
             vecx2k[i]= vecxk[i]*vecxk[i]
             vecxkyk[i]= vecxk[i]*vecyk[i]
         }
+
         //Crear sigma
         for(let i=0; i<vecxk.length; i++){
             sigma[0]+=vecxk[i]
@@ -47,11 +50,28 @@ function Entrada_regresion(props){
             sigma[2]+=vecx2k[i]
             sigma[3]+=vecxkyk[i]
         }
-        
+
+        // Crear tabla
+        for(let i= 0; i<vecxk.length; i++){
+            tablaReng=[]
+            tablaReng.push(i+1)
+            tablaReng.push(vecxk[i])
+            tablaReng.push(vecyk[i])
+            tablaReng.push(vecx2k[i])
+            tablaReng.push(vecxkyk[i])
+            tabla.push(tablaReng)
+        }
+        setTablaSt(()=>(tabla.map(e=> e.map(f=>f))))
+
+        //Crear sigmaSt
+        setSigmast([sigma[0],sigma[1], sigma[2], sigma[3]])
+
+        //Crear MA
         setMatriz([""+sigma[2], ""+sigma[0], ""+sigma[3], 
         ""+sigma[0], ""+vecxk.length, ""+sigma[1]])
 
         setSolucion(true)
+
     }
 
     return(
@@ -77,10 +97,10 @@ function Entrada_regresion(props){
                 />
                 <button onClick={interpretar}>Resolver</button>
             </form>
-            {/* <Tabla_regresion
-             vecxk={vecxk}
-             vecyk={vecyk}
-            /> */}
+            {solucion && <Tabla_regresion
+             tabla={tablaSt}
+             sigma={sigmaSt}
+            />}
             {solucion && <Resolver
              matriz={matriz}
              dimension="2x2"

@@ -1,5 +1,6 @@
 function Tabla_regresion(props){
-    // const vecrow= props.vecxk.map(e => <tr><th>{e}</th></tr>)
+    let tabla=props.tabla.map( e=> <tr>{e.map(f=><td>{f}</td>)}</tr>)
+
     return(
         <table className="tabla-regresion">
             <tbody>
@@ -10,7 +11,15 @@ function Tabla_regresion(props){
                     <th>x²k</th>
                     <th>xkyk</th>
                 </tr>
-                {/* {vecrow} */}
+                {tabla}
+                <tr>
+                    
+                    <td><b>Σ</b></td>
+                    <td>{props.sigma[0]}</td>
+                    <td>{props.sigma[1]}</td>
+                    <td>{props.sigma[2]}</td>
+                    <td>{props.sigma[3]}</td>
+                </tr>
             </tbody>
         </table>
     )

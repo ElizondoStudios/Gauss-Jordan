@@ -107,9 +107,15 @@ html{
   font-size: 2rem;
   text-align: center;
   margin-top: 30px;
+  margin-bottom: 30px;
+  border: solid 1px black;
+  border-collapse: collapse;
 }
 
   .tabla-regresion>tbody>tr>th{
-    margin: 0;
+    border: solid 1px black;
+    min-width: 50px;
   }
-
+  .tabla-regresion>tbody>tr>td{
+    border: solid 1px black;
+  }
