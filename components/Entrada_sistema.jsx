@@ -12,6 +12,7 @@ function Entrada_sistema(props){
              onSubmit={event => event.preventDefault()}
              className="entrada-sistemas--form"
             >
+                <h1>Resolver sistema {props.dimension}</h1>
                 <label htmlFor="sistema">Seleccione el tamaño del sistema</label>
                 <select 
                  name="sistema"
@@ -28,12 +29,16 @@ function Entrada_sistema(props){
 
                 <h3>Introducir sistema: </h3>
 
-                <input type="text" onChange={e => setEcuacion1(e.target.value)} value={ecuacion1}/>
+                <label htmlFor="ec1">ecuación 1:</label>
+                <input id="ec1" type="text" onChange={e => setEcuacion1(e.target.value)} value={ecuacion1}/>
 
-                <input type="text" onChange={e => setEcuacion2(e.target.value)} value={ecuacion2}/>
-
-                {props.sistema=="3x3" && 
-                    <input type="text" onChange={e => setEcuacion3(e.target.value)} value={ecuacion3}/>}
+                <label htmlFor="ec2">ecuación 2:</label>
+                <input id="ec2" type="text" onChange={e => setEcuacion2(e.target.value)} value={ecuacion2}/>
+                
+                {props.sistema==="3x3"&&
+                <label htmlFor="ec3">ecuación 3:</label>}
+                {props.sistema==="3x3" && 
+                    <input id="ec3" type="text" onChange={e => setEcuacion3(e.target.value)} value={ecuacion3}/>}
                 
                 <button 
                  onClick={()=>{

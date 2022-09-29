@@ -17,9 +17,13 @@ function Resolver(props){
                  a23.dato, b2.dato, a31.dato, a32.dato, a33.dato, b3.dato]
 
             Pasos.push(<Matriz_aumentada_3x3
-                matriz={matrizPasos}
-                />)
+                            matriz={matrizPasos}
+                        />)
         }
+        Pasos.push(
+            <Matriz_aumentada_3x3 
+                matriz={props.matriz}
+            />)
 
         let a13, a23, a31, a32, a33, b3, alfa
         a11= new racionales(props.matriz[0])
@@ -155,6 +159,11 @@ function Resolver(props){
                 />)
         }
 
+        Pasos.push(
+            <Matriz_aumentada_2x2 
+                matriz={props.matriz}
+            />)
+
         a11= new racionales(props.matriz[0])
         a12= new racionales(props.matriz[1])
         b1= new racionales(props.matriz[2])
@@ -218,8 +227,9 @@ function Resolver(props){
             Pasos.push(
                 <div className="resolver--solucion">
                     <h1>Solución del sistema:</h1>
-                    <h2>x= {b1.dato}</h2>
-                    <h2>y= {b2.dato}</h2>
+                    <h2>{props.regresion? "A": "x"}= {b1.dato}</h2>
+                    <h2>{props.regresion? "B": "y"}= {b2.dato}</h2>
+                    {/*Agregar solución de y en regresion lineal*/}
                 </div>
             )
         }

@@ -1,10 +1,13 @@
 import React from 'react'
 import Entrada_sistema from '../components/Entrada_sistema'
-import Matriz_aumentada_3x3 from '../components/Matriz_aumentada_3x3';
-import Matriz_aumentada_2x2 from '../components/Matriz_aumentada_2x2';
 import Resolver from '../components/Resolver';
+import Entrada_regresion from '../components/Entrada_regresion';
 
 function App() {
+  //Estado general
+  const[tipoProblema, setTipoProblema]= React.useState("Regresion")
+
+  //Gauss-Jordan
   const [dimensionSistema, setDimensionSistema]= React.useState("2x2");
   const [mostrarRes, setMostrarRes]= React.useState(false)
   const [MA, setMA]= React.useState([])
@@ -86,24 +89,46 @@ function App() {
 
   return (
     <div className="App">
-      <h1 className='App--titulo'>Resolver sistema {dimensionSistema}</h1>
+      <h1 className="App--titulo">Álgebra lineal</h1>
+
+      <div className="App--seleccionar">
+        <div>
+          <label htmlFor="seleccionar-problema">Seleccione el tipo de problema a resolver</label>
+          <select 
+          id="seleccionar-problema"
+           onChange={e=> 
+                      {e.target.value==="Gauss Jordan"?setTipoProblema("GJ"):
+                      setTipoProblema("Regresion")
+                      setMostrarRes(false)}}>
+            <option>Regresión lineal</option>
+            <option>Gauss Jordan</option>
+          </select>
+        </div>
+      </div>
+
+      <h4 className="App--nombre">Desarrollado por José Luis Elizondo Figueroa</h4>
+      <h4 className="App--repositorio">
+        <a 
+         href='https://github.com/ElizondoStudios/Gauss-Jordan'
+        >Repositorio en Github</a>
+      </h4>
+
+      <div className='App--espacio'/>
+
+      {tipoProblema==="GJ" &&
       <Entrada_sistema
        sistema={dimensionSistema}
        cambiarSistema={cambiarSistema}
        crearMA={crearMA}
-      />
+       dimension={dimensionSistema}
+      />}
       <div className='App--espacio'/>
-      {mostrarRes && dimensionSistema=="3x3" &&
-        <Matriz_aumentada_3x3 
-          matriz={MA}
-        />
-      }
-      {mostrarRes && dimensionSistema=="2x2" &&
-        <Matriz_aumentada_2x2
-          matriz={MA}
-        />
-      }
       {mostrarRes && <Resolver matriz={MA} dimension={dimensionSistema}/>}
+
+      {tipoProblema==="Regresion" &&
+      <Entrada_regresion
+      />
+      }
     </div>
   )
 }
