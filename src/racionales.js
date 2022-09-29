@@ -41,7 +41,7 @@ export class racionales{
 
     MCD(dividendo, divisor, indxPrimos){
         // Caso base 
-        if(dividendo<this.primos[indxPrimos] || divisor<this.primos[indxPrimos]){
+        if(dividendo<this.primos[indxPrimos] || divisor<this.primos[indxPrimos] || this.primos[indxPrimos]===1009){
             let resultado=1;
             this.divisores.forEach(e => resultado*=e)
             return resultado
