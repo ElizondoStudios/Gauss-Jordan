@@ -44,7 +44,8 @@ function Entrada_sistema(props){
                  onClick={()=>{
                     sistema.push(ecuacion1)
                     sistema.push(ecuacion2)
-                    if(props.sistema=="3x3") sistema.push(ecuacion3)
+                    if(props.sistema=="3x3")
+                        sistema.push(ecuacion3)
                     props.crearMA(sistema)}}
                 >resolver sistema</button>
             </form>

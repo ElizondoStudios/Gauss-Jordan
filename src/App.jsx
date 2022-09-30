@@ -19,13 +19,16 @@ function App() {
     setMA([]);
   }
 
+
   function interpretar(ecuacion){
+    console.log(ecuacion)
     ecuacion.replace(/\s+/g, '') //quita todos los espacios
     let xposc, yposc, zposc, equalposc
     xposc= ecuacion.indexOf("x")
     yposc= ecuacion.indexOf("y")
     zposc= ecuacion.indexOf("z")
     equalposc= ecuacion.indexOf("=")
+      
 
     if(xposc===-1){
       setMA(prevMA => (
@@ -75,15 +78,40 @@ function App() {
         )
       )
     }
-
   }
 
+  function corregirEc(ecuacion){
+    let xposc, yposc, zposc
+
+    //Corregir ecuacion
+    xposc= ecuacion.indexOf("x")
+    if(xposc===0 || (xposc===1 && ecuacion[0]==="-"))
+      ecuacion=ecuacion.replace("x", "1x")
+
+    yposc= ecuacion.indexOf("y")
+    if(yposc>=0 && (ecuacion[yposc-1]==="+" || ecuacion[yposc-1]==="-"))
+      ecuacion=ecuacion.replace("y", "1y")
+      
+    zposc= ecuacion.indexOf("z")
+    if(zposc>=0 && (ecuacion[zposc-1]==="+" || ecuacion[zposc-1]==="-"))
+      ecuacion=ecuacion.replace("z", "1z")
+
+    return ecuacion
+}
+
   function crearMA(sistema){
-    const[ecuacion1, ecuacion2, ecuacion3]=sistema
     setMA([])
-    interpretar(ecuacion1)
-    interpretar(ecuacion2)
-    if(dimensionSistema=="3x3") interpretar(ecuacion3)
+    let[ecuacion1, ecuacion2, ecuacion3]=sistema
+    
+    if(ecuacion1[0]==="1" || ecuacion1[0]==="x" ||(ecuacion1[0]==="-" && ecuacion1[1]==="x")){
+      let aux= ecuacion1
+      ecuacion1=ecuacion2
+      ecuacion2=aux
+    }
+      
+    interpretar(corregirEc(ecuacion1))
+    interpretar(corregirEc(ecuacion2))
+    if(dimensionSistema=="3x3") interpretar(corregirEc(ecuacion3))
     setMostrarRes(true)
   }
 

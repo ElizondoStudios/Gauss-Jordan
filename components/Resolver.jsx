@@ -79,10 +79,23 @@ function Resolver(props){
 
         if(a22.dato==="0"){
             if(b2.dato==="0"){
+                Pasos.push(<h2 className="resolver--paso">({new racionales("1").dividir(a11)})R1 ➡ R1</h2>)  
+                Pasos.push(<h2 className="resolver--paso">({new racionales("1").dividir(a11)})R3 ➡ R3</h2>)  
+
+                a13.dato=a13.dividir(a11)
+                b1.dato=b1.dividir(a11)
+                a11.dato="1"
+
+                a33.dato=a33.dividir(a32)
+                b3.dato=b3.dividir(a32)
+                a32.dato="1"
+                generarPaso()
+
                 Pasos.push(
                     <div className="resolver--solucion">
                         <h1>Solución del sistema:</h1>
                         <h2>El sistema tiene infinitas soluciones</h2>
+                        <h2>S={`{(${b1.dato+"+("+a13.multiplicar(new racionales("-1"))+")"}z, ${b3.dato+"+("+a33.multiplicar(new racionales("-1"))+")"}z, z)|z∈R}`}</h2>
                     </div>
                 )
             }else{
@@ -95,10 +108,23 @@ function Resolver(props){
             }
         }else if(a33.dato==="0"){
             if(b3.dato==="0"){
+                Pasos.push(<h2 className="resolver--paso">({new racionales("1").dividir(a11)})R1 ➡ R1</h2>)  
+                Pasos.push(<h2 className="resolver--paso">({new racionales("1").dividir(a11)})R2 ➡ R2</h2>)
+
+                a13.dato=a13.dividir(a11)
+                b1.dato=b1.dividir(a11)
+                a11.dato="1"
+
+                a23.dato=a23.dividir(a22)
+                b2.dato=b2.dividir(a22)
+                a22.dato="1"
+                generarPaso()
+
                 Pasos.push(
                     <div className="resolver--solucion">
                         <h1>Solución del sistema:</h1>
                         <h2>El sistema tiene infinitas soluciones</h2>
+                        <h2>S={`{(${b1.dato+"+("+a13.multiplicar(new racionales("-1"))+")"}z, ${b2.dato+"+("+a23.multiplicar(new racionales("-1"))+")"}z, z)|z∈R}`}</h2>
                     </div>
                 )
             }else{
