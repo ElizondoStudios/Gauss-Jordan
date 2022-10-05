@@ -1,4 +1,4 @@
-function Matriz_aumentada_3x3(props){
+function Matriz_aumentada_3x3_inversa(props){
     return(
         <div className="matriz-aumentada">
             <div className="matriz-aumentada--simbolos">
@@ -13,40 +13,42 @@ function Matriz_aumentada_3x3(props){
                             <td>{props.matriz[2]}</td>
                         </tr>
                         <tr>
-                            <td>{props.matriz[4]}</td>
-                            <td>{props.matriz[5]}</td>
                             <td>{props.matriz[6]}</td>
+                            <td>{props.matriz[7]}</td>
+                            <td>{props.matriz[8]}</td>
                         </tr>
                         <tr>
-                            <td>{props.matriz[8]}</td>
-                            <td>{props.matriz[9]}</td>
-                            <td>{props.matriz[10]}</td>
+                            <td>{props.matriz[12]}</td>
+                            <td>{props.matriz[13]}</td>
+                            <td>{props.matriz[14]}</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-
-            {!props.solucion&&
             <div className="matriz-aumentada--simbolos">
                 <p>|</p>
-            </div>}
-
-            {!props.solucion&&
+            </div>
             <div>
                 <table className="matriz-aumentada--datos">
                     <tbody>
                         <tr>
                             <td>{props.matriz[3]}</td>
+                            <td>{props.matriz[4]}</td>
+                            <td>{props.matriz[5]}</td>
                         </tr>
                         <tr>
-                            <td>{props.matriz[7]}</td>
-                        </tr>
-                        <tr>
+                            <td>{props.matriz[9]}</td>
+                            <td>{props.matriz[10]}</td>
                             <td>{props.matriz[11]}</td>
+                        </tr>
+                        <tr>
+                            <td>{props.matriz[15]}</td>
+                            <td>{props.matriz[16]}</td>
+                            <td>{props.matriz[17]}</td>
                         </tr>
                     </tbody>
                 </table>
-            </div>}
+            </div>
             <div className="matriz-aumentada--simbolos">
                 <p>]</p>
             </div>  
@@ -54,4 +56,4 @@ function Matriz_aumentada_3x3(props){
     )
 }
 
-export default Matriz_aumentada_3x3
+export default Matriz_aumentada_3x3_inversa

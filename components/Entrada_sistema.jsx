@@ -25,6 +25,8 @@ function Entrada_sistema(props){
                 >
                     <option value="2x2">2x2</option>
                     <option value="3x3">3x3</option>
+                    <option value="2x2 (matriz inversa)">2x2 (matriz inversa)</option>
+                    <option value="3x3 (matriz inversa)">3x3 (matriz inversa)</option>
                 </select>
 
                 <h3>Introducir sistema: </h3>
@@ -35,16 +37,16 @@ function Entrada_sistema(props){
                 <label htmlFor="ec2">ecuación 2:</label>
                 <input id="ec2" type="text" onChange={e => setEcuacion2(e.target.value)} value={ecuacion2}/>
                 
-                {props.sistema==="3x3"&&
+                {(props.sistema==="3x3" || props.sistema==="3x3 (matriz inversa)")&&
                 <label htmlFor="ec3">ecuación 3:</label>}
-                {props.sistema==="3x3" && 
+                {(props.sistema==="3x3" || props.sistema==="3x3 (matriz inversa)") && 
                     <input id="ec3" type="text" onChange={e => setEcuacion3(e.target.value)} value={ecuacion3}/>}
                 
                 <button 
                  onClick={()=>{
                     sistema.push(ecuacion1)
                     sistema.push(ecuacion2)
-                    if(props.sistema=="3x3")
+                    if(props.sistema=="3x3" || props.sistema==="3x3 (matriz inversa)")
                         sistema.push(ecuacion3)
                     props.crearMA(sistema)}}
                 >resolver sistema</button>

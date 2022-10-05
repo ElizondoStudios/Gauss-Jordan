@@ -18,9 +18,13 @@ function Matriz_aumentada_2x2(props){
                     </tbody>
                 </table>
             </div>
+
+            {!props.solucion &&
             <div className="matriz-aumentada--simbolos">
                 <p>|</p>
-            </div>
+            </div>}
+
+            {!props.solucion &&
             <div>
                 <table className="matriz-aumentada--datos">
                     <tbody>
@@ -32,7 +36,7 @@ function Matriz_aumentada_2x2(props){
                         </tr>
                     </tbody>
                 </table>
-            </div>
+            </div>}
             <div className="matriz-aumentada--simbolos">
                 <p>]</p>
             </div>

@@ -20,7 +20,7 @@ function App() {
   }
 
 
-  function interpretar(ecuacion){
+  function interpretar(ecuacion, num){
     ecuacion.replace(/\s+/g, '') //quita todos los espacios
     let xposc, yposc, zposc, equalposc
     xposc= ecuacion.indexOf("x")
@@ -52,7 +52,7 @@ function App() {
         )
       )
     }
-    if(dimensionSistema=="3x3"){
+    if(dimensionSistema=="3x3" || dimensionSistema=="3x3 (matriz inversa)"){
       if(zposc===-1){
         setMA(prevMA => (
           [...prevMA, "0"]
@@ -66,16 +66,49 @@ function App() {
       }
     }
 
-    if(equalposc===-1){
-      setMA(prevMA => (
-        [...prevMA, "0"]
+    if(dimensionSistema=="3x3" || dimensionSistema=="2x2"){
+      if(equalposc===-1){
+        setMA(prevMA => (
+          [...prevMA, "0"]
+          )
         )
-      )
-    }else{
-      setMA(prevMA => (
-        [...prevMA, ecuacion.slice(equalposc+1)]
+      }else{
+        setMA(prevMA => (
+          [...prevMA, ecuacion.slice(equalposc+1)]
+          )
         )
-      )
+      }
+    }else{ //Si es matriz inversa
+      if(num===1){
+        if(dimensionSistema=="3x3 (matriz inversa)"){
+          setMA(prevMA => (
+            [...prevMA, "1","0","0"]
+            )
+          )
+        }else{
+          setMA(prevMA => (
+            [...prevMA, "1","0"]
+            )
+          )
+        }
+      }else if(num===2){
+        if(dimensionSistema=="3x3 (matriz inversa)"){
+          setMA(prevMA => (
+            [...prevMA, "0","1","0"]
+            )
+          )
+        }else{
+          setMA(prevMA => (
+            [...prevMA, "0","1"]
+            )
+          )
+        }
+      }else{
+        setMA(prevMA => (
+          [...prevMA, "0","0","1"]
+          )
+        )
+      }
     }
   }
 
@@ -102,9 +135,9 @@ function App() {
     setMA([])
     let[ecuacion1, ecuacion2, ecuacion3]=sistema
       
-    interpretar(corregirEc(ecuacion1))
-    interpretar(corregirEc(ecuacion2))
-    if(dimensionSistema=="3x3") interpretar(corregirEc(ecuacion3))
+    interpretar(corregirEc(ecuacion1), 1)
+    interpretar(corregirEc(ecuacion2), 2)
+    if(dimensionSistema=="3x3" || dimensionSistema=="3x3 (matriz inversa)") interpretar(corregirEc(ecuacion3), 3)
     setMostrarRes(true)
   }
 
