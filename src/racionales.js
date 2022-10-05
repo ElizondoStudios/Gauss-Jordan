@@ -60,7 +60,7 @@ export class racionales{
     simplificar(numerador, denominador){
         // El denominador es 1
         if(denominador==1)
-            return numerador
+            return ""+numerador
         //El numerador es 0
         if(numerador==0)
             return "0"

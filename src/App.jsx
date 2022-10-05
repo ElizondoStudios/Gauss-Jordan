@@ -21,7 +21,6 @@ function App() {
 
 
   function interpretar(ecuacion){
-    console.log(ecuacion)
     ecuacion.replace(/\s+/g, '') //quita todos los espacios
     let xposc, yposc, zposc, equalposc
     xposc= ecuacion.indexOf("x")
@@ -102,12 +101,6 @@ function App() {
   function crearMA(sistema){
     setMA([])
     let[ecuacion1, ecuacion2, ecuacion3]=sistema
-    
-    if(ecuacion1[0]==="1" || ecuacion1[0]==="x" ||(ecuacion1[0]==="-" && ecuacion1[1]==="x")){
-      let aux= ecuacion1
-      ecuacion1=ecuacion2
-      ecuacion2=aux
-    }
       
     interpretar(corregirEc(ecuacion1))
     interpretar(corregirEc(ecuacion2))
