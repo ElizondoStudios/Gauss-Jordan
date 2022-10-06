@@ -1,4 +1,6 @@
 function Matriz_aumentada_2x2_inversa(props){
+    let strAula=""
+    props.matriz.forEach(e=> {strAula+=e.replace("/", "")})
     return(
         <div className="matriz-aumentada">
             <div className="matriz-aumentada--simbolos">
@@ -38,6 +40,7 @@ function Matriz_aumentada_2x2_inversa(props){
             <div className="matriz-aumentada--simbolos">
                 <p>]</p>
             </div>
+            <button onClick={()=>{navigator.clipboard.writeText(strAula)}}>Copiar</button>
         </div>
     )
 }
