@@ -1,6 +1,23 @@
 function Matriz_aumentada_3x3(props){
-    let strAula=""
-    props.matriz.forEach(e=> {strAula+=e.replace("/", "")})
+    //Copiar matriz para aula virtual
+    function CopiarMat(){
+        let strAula='<math xmlns="http://www.w3.org/1998/Math/MathML"><mfenced><mtable><mtr>', matImp
+        matImp=props.matriz.map(e => e)
+
+        for(let i=0; i<matImp.length; i++){
+            if(i===4 ||i===8)
+                strAula+="<mtr>"
+
+            strAula+=matImp[i].indexOf("/")===-1?`<mtd><mn>${matImp[i]}</mn></mtd>`:
+            `<mtd><mfrac><mn>${matImp[i].substring(0, matImp[i].indexOf("/"))}</mn><mn>${matImp[i].substring(matImp[i].indexOf("/")+1)}</mn></mfrac></mtd>`
+
+            if(i===3 || i===7 || i===11)
+                strAula+="</mtr>"
+        }
+        strAula+="</mtable></mfenced></math>"
+        return strAula
+    }
+
     return(
         <div className="matriz-aumentada">
             <div className="matriz-aumentada--simbolos">
@@ -52,7 +69,7 @@ function Matriz_aumentada_3x3(props){
             <div className="matriz-aumentada--simbolos">
                 <p>]</p>
             </div>  
-            <button onClick={()=>{navigator.clipboard.writeText(strAula)}}>Copiar</button>
+            <button onClick={()=>{navigator.clipboard.writeText(CopiarMat())}}>Copiar</button>
         </div>
     )
 }
