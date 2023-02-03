@@ -5,7 +5,7 @@ import Entrada_regresion from '../components/Entrada_regresion';
 
 function App() {
   //Estado general
-  const[tipoProblema, setTipoProblema]= React.useState("Regresion")
+  const[tipoProblema, setTipoProblema]= React.useState("GJ")
 
   //Gauss-Jordan
   const [dimensionSistema, setDimensionSistema]= React.useState("2x2");
